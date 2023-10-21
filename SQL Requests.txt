@@ -1,0 +1,29 @@
+Задание 1.
+
+SELECT C.login, COUNT(o.id) AS order_count
+FROM "Couriers"  AS c
+JOIN "Orders" AS o ON c.id = o."courierId"
+WHERE o."inDelivery" = TRUE
+GROUP BY c.login
+ORDER BY order_count DESC;
+
+Задание 2.
+
+SELECT track,
+(CASE WHEN finished = TRUE THEN 2
+ELSE 0
+END) +
+(CASE WHEN "Orders"."cancelled"= TRUE THEN -1
+ELSE 0
+END) +
+(CASE WHEN "Orders"."inDelivery" = TRUE THEN 1
+ELSE 0
+END) AS status
+FROM "Orders";
+
+
+
+
+
+
+
